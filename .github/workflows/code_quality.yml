@@ -16,10 +16,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Use Node.js 16
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Cache node modules
         uses: actions/cache@v3
@@ -29,8 +29,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies (with legacy peer deps to prevent ESLint v9 issue)
-        run: npm install --legacy-peer-deps
+      - name: Install dependencies
+        run: npm install
 
       - name: Run Prettier check
         run: npx prettier --check "src/**/*.{ts,tsx,js,jsx,json,css,md}"
@@ -38,5 +38,5 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run tests (all, not watch mode)
+      - name: Run tests
         run: npm test -- --passWithNoTests --watchAll=false
