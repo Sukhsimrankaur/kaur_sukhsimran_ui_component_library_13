@@ -1,25 +1,32 @@
-import { render } from '@testing-library/react';
-import { TableHeader } from './TableHeader';
-import 'jest-styled-components';
+import { render } from "@testing-library/react";
+import { TableHeader } from "./TableHeader";
+import "jest-styled-components";
 
-test('renders visible table header', () => {
+test("renders visible table header", () => {
   const { getByText } = render(
     <table>
       <TableHeader>
-        <tr><th>Header 1</th></tr>
+        <tr>
+          <th>Header 1</th>
+        </tr>
       </TableHeader>
-    </table>
+    </table>,
   );
-  expect(getByText('Header 1')).toBeVisible();
+  expect(getByText("Header 1")).toBeVisible();
 });
 
-test('disabled table header is gray', () => {
-  const { getByText } = render(
+test("disabled table header is gray", () => {
+  const { container } = render(
     <table>
       <TableHeader disabled>
-        <tr><th>Header 1</th></tr>
+        <tr>
+          <th>Header 1</th>
+        </tr>
       </TableHeader>
-    </table>
+    </table>,
   );
-  expect(getByText('Header 1')).toHaveStyle('color: #999');
+
+  // Check style on the <thead> element
+  const thead = container.querySelector("thead");
+  expect(thead).toHaveStyle("color: rgb(153, 153, 153)"); // #999 is rgb(153,153,153)
 });

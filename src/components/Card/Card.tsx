@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { CardProps } from './Card.types';
+import React from "react";
+import styled from "styled-components";
+import { CardProps } from "./Card.types";
 
 const StyledCard = styled.div<{ disabled?: boolean }>`
   background: white;

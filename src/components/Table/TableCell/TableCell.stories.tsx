@@ -1,12 +1,12 @@
-import React from 'react';
-import { TableCell } from './TableCell';
+import React from "react";
+import { TableCell } from "./TableCell";
 
 export default {
-  title: 'Components/TableCell',
+  title: "Components/TableCell",
   component: TableCell,
   argTypes: {
-    disabled: { control: 'boolean' },
-    content: { control: 'text' },
+    disabled: { control: "boolean" },
+    content: { control: "text" },
   },
 };
 
@@ -21,6 +21,6 @@ export const Default = (args: any) => (
 );
 
 Default.args = {
-  content: 'Cell content',
+  content: "Cell content",
   disabled: false,
 };

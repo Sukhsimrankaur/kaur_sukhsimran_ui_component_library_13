@@ -1,17 +1,17 @@
-import React from 'react';
-import { Text } from './Text';
+import React from "react";
+import { Text } from "./Text";
 
 export default {
-  title: 'Components/Text',
+  title: "Components/Text",
   component: Text,
   argTypes: {
-    content: { control: 'text' },
-    disabled: { control: 'boolean' },
+    content: { control: "text" },
+    disabled: { control: "boolean" },
   },
 };
 
 export const Default = (args: any) => <Text {...args} />;
 Default.args = {
-  content: 'Sample text here',
+  content: "Sample text here",
   disabled: false,
 };

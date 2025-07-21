@@ -1,16 +1,20 @@
-import { render } from '@testing-library/react';
-import { HeroImage } from './HeroImage';
+import { render } from "@testing-library/react";
+import { HeroImage } from "./HeroImage";
 
-test('renders hero image title', () => {
+test("renders hero image title", () => {
   const { getByText } = render(
-    <HeroImage backgroundUrl="/hero.jpg" title="Welcome!" />
+    <HeroImage backgroundUrl="/hero.jpg" title="Welcome!" />,
   );
-  expect(getByText('Welcome!')).toBeVisible();
+  expect(getByText("Welcome!")).toBeVisible();
 });
 
-test('renders subtitle when provided', () => {
+test("renders subtitle when provided", () => {
   const { getByText } = render(
-    <HeroImage backgroundUrl="/hero.jpg" title="Welcome!" subtitle="Enjoy your stay" />
+    <HeroImage
+      backgroundUrl="/hero.jpg"
+      title="Welcome!"
+      subtitle="Enjoy your stay"
+    />,
   );
-  expect(getByText('Enjoy your stay')).toBeVisible();
+  expect(getByText("Enjoy your stay")).toBeVisible();
 });

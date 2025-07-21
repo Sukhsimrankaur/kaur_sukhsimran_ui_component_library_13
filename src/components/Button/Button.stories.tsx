@@ -1,17 +1,17 @@
-import React from 'react';
-import { Button } from './Button';
+import React from "react";
+import { Button } from "./Button";
 
 export default {
-  title: 'Components/Button',
+  title: "Components/Button",
   component: Button,
   argTypes: {
-    label: { control: 'text' },
-    disabled: { control: 'boolean' },
+    label: { control: "text" },
+    disabled: { control: "boolean" },
   },
 };
 
 export const Default = (args: any) => <Button {...args} />;
 Default.args = {
-  label: 'Click Me',
+  label: "Click Me",
   disabled: false,
 };

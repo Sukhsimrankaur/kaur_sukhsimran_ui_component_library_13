@@ -1,8 +1,8 @@
-import { render } from '@testing-library/react';
-import { TableCell } from './TableCell';
-import 'jest-styled-components';
+import { render } from "@testing-library/react";
+import { TableCell } from "./TableCell";
+import "jest-styled-components";
 
-test('renders visible table cell', () => {
+test("renders visible table cell", () => {
   const { getByText } = render(
     <table>
       <tbody>
@@ -10,12 +10,12 @@ test('renders visible table cell', () => {
           <TableCell content="Data" />
         </tr>
       </tbody>
-    </table>
+    </table>,
   );
-  expect(getByText('Data')).toBeVisible();
+  expect(getByText("Data")).toBeVisible();
 });
 
-test('disabled cell has gray text', () => {
+test("disabled cell has gray text", () => {
   const { getByText } = render(
     <table>
       <tbody>
@@ -23,7 +23,7 @@ test('disabled cell has gray text', () => {
           <TableCell content="Disabled" disabled />
         </tr>
       </tbody>
-    </table>
+    </table>,
   );
-  expect(getByText('Disabled')).toHaveStyle('color: #888');
+  expect(getByText("Disabled")).toHaveStyle("color: #888");
 });

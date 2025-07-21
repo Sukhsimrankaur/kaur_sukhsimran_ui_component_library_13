@@ -1,25 +1,31 @@
-import { render } from '@testing-library/react';
-import { TableFooter } from './TableFooter';
-import 'jest-styled-components';
+import { render } from "@testing-library/react";
+import { TableFooter } from "./TableFooter";
+import "jest-styled-components";
 
-test('renders visible table footer', () => {
+test("renders visible table footer", () => {
   const { getByText } = render(
     <table>
       <TableFooter>
-        <tr><td>Footer content</td></tr>
+        <tr>
+          <td>Footer content</td>
+        </tr>
       </TableFooter>
-    </table>
+    </table>,
   );
-  expect(getByText('Footer content')).toBeVisible();
+  expect(getByText("Footer content")).toBeVisible();
 });
 
-test('disabled table footer is gray', () => {
+test("disabled table footer is gray", () => {
   const { getByText } = render(
     <table>
       <TableFooter disabled>
-        <tr><td>Footer content</td></tr>
+        <tr>
+          <td>Footer content</td>
+        </tr>
       </TableFooter>
-    </table>
+    </table>,
   );
-  expect(getByText('Footer content')).toHaveStyle('color: #999');
+  const cell = getByText("Footer content");
+  const footerElement = cell.closest("tfoot") || cell.parentElement;
+  expect(footerElement).toHaveStyle("color: rgb(153, 153, 153)");
 });

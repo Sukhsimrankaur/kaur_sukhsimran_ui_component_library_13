@@ -1,32 +1,34 @@
-# Stage 1: Build React App
-FROM node:18-alpine as build
+# Stage 1: Build React app
+FROM node:20-alpine AS builder
 
-# Set working directory
-WORKDIR /kaur_sukhsimran_ui_garden
+WORKDIR /app
 
 # Copy package files
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install
+# Update npm to latest version (optional but recommended)
+RUN npm install -g npm@11.4.2
 
-# Copy the rest of the app
+# Install dependencies with legacy-peer-deps flag to avoid conflicts
+RUN npm install --legacy-peer-deps
+
+# Copy source files
 COPY . .
 
 # Build the production app
 RUN npm run build
 
-# Stage 2: Serve with Nginx
-FROM nginx:stable-alpine
+# Stage 2: Serve app with nginx
+FROM nginx:alpine
 
-# Copy the build output to nginx's public folder
-COPY --from=build /kaur_sukhsimran_ui_garden/build /usr/share/nginx/html
+# Remove default nginx website
+RUN rm -rf /usr/share/nginx/html/*
 
-# Expose port 8083
-EXPOSE 8083
+# Copy built React app from builder stage
+COPY --from=builder /app/build /usr/share/nginx/html
 
-# Replace default Nginx config with one that listens on 8083
-RUN sed -i 's/80;/8083;/' /etc/nginx/conf.d/default.conf
+# Expose port 8018
+EXPOSE 8018
 
-# Start Nginx
+# Start nginx server on port 8018
 CMD ["nginx", "-g", "daemon off;"]

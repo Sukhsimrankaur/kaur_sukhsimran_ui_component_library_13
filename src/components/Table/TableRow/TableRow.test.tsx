@@ -1,8 +1,8 @@
-import { render } from '@testing-library/react';
-import { TableRow } from './TableRow';
-import 'jest-styled-components';
+import { render } from "@testing-library/react";
+import { TableRow } from "./TableRow";
+import "jest-styled-components";
 
-test('renders visible table row', () => {
+test("renders visible table row", () => {
   const { getByText } = render(
     <table>
       <tbody>
@@ -10,12 +10,12 @@ test('renders visible table row', () => {
           <td>Cell 1</td>
         </TableRow>
       </tbody>
-    </table>
+    </table>,
   );
-  expect(getByText('Cell 1')).toBeVisible();
+  expect(getByText("Cell 1")).toBeVisible();
 });
 
-test('disabled table row is gray', () => {
+test("disabled table row is gray", () => {
   const { getByText } = render(
     <table>
       <tbody>
@@ -23,7 +23,10 @@ test('disabled table row is gray', () => {
           <td>Cell 1</td>
         </TableRow>
       </tbody>
-    </table>
+    </table>,
   );
-  expect(getByText('Cell 1')).toHaveStyle('color: #999');
+  const cell = getByText("Cell 1");
+  const row = cell.closest("tr"); // get the <tr> element (TableRow)
+
+  expect(row).toHaveStyle("color: rgb(153, 153, 153)");
 });
