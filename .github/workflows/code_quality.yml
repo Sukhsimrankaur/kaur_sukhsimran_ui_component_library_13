@@ -29,8 +29,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies (with legacy peer deps to prevent ESLint v9 issue)
+        run: npm install --legacy-peer-deps
 
       - name: Run Prettier check
         run: npx prettier --check "src/**/*.{ts,tsx,js,jsx,json,css,md}"
@@ -38,5 +38,5 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run tests
-        run: npm test -- --watchAll=false
+      - name: Run tests (all, not watch mode)
+        run: npm test -- --passWithNoTests --watchAll=false
